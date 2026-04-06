@@ -1,0 +1,7 @@
+06-04-2026 22:35:18:361 udp_servidor [INFO] : inici servidor
+06-04-2026 22:35:18:380 udp_servidor [INFO] : Inici RemoteMapUDPservidor 
+06-04-2026 22:35:18:380 udp_servidor [INFO] : server_port: 5836
+06-04-2026 22:35:18:380 udp_servidor [INFO] : map: {k1=One, k3=Eleven, k4=Twenty-one}
+06-04-2026 22:36:32:561 udp_servidor [TRACE] : Received key: k1
+06-04-2026 22:36:32:566 udp_servidor [TRACE] : Received key: k3
+06-04-2026 22:36:32:567 udp_servidor [TRACE] : Received key: k4
