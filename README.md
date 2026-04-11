@@ -1,92 +1,92 @@
-# 📡 Parte 1 — Programación con Sockets UDP
+# 📡 Part 1 — UDP Socket Programming
 
-**Asignatura:** Redes y Aplicaciones Internet – Sistemas de Internet  
-**Curso:** 2025-26/2  
-**Autor:** Brayan Saiago Rojas  
-**Universidad:** Universitat Oberta de Catalunya (UOC)
-
----
-
-## 📋 Descripción
-
-Implementación de una aplicación cliente-servidor basada en **sockets UDP** (no orientados a la conexión) en Java. El objetivo es que el cliente construya un mapa unificado con los datos distribuidos entre varios servidores, consultando clave por clave mediante datagramas UDP.
+**Subject:** Internet Networks and Applications – Internet Systems  
+**Academic Year:** 2025-26/2  
+**Author:** Brayan Saiago Rojas  
+**University:** Universitat Oberta de Catalunya (UOC)
 
 ---
 
-## 🏗️ Arquitectura
+## 📋 Description
+
+Implementation of a client-server application based on **UDP sockets** (connectionless) in Java. The goal is for the client to build a unified map with data distributed across multiple servers, querying key by key using UDP datagrams.
+
+---
+
+## 🏗️ Architecture
 
 ```
-Cliente                         Servidor 1 (puerto 5836)
+Client                          Server 1 (port 5836)
   │                                  │
-  │── envia clave "k1" ────────────► │
-  │◄─ recibe valor "One" ────────── │
+  │── sends key "k1" ──────────────► │
+  │◄─ receives value "One" ───────── │
   │                                  
-  │                             Servidor 2 (puerto 5838)
+  │                             Server 2 (port 5838)
   │                                  │
-  │── envia clave "k2" ────────────► │
-  │◄─ recibe valor "Thirty" ──────── │
+  │── sends key "k2" ──────────────► │
+  │◄─ receives value "Thirty" ─────── │
 ```
 
-**Mapa final del cliente:**
+**Final client map:**
 ```
 {k1=One, k2=Thirty, k3=Eleven, k4=Twenty-one}
 ```
 
 ---
 
-## 📁 Ficheros del proyecto
+## 📁 Project Files
 
-| Fichero | Descripción |
-|--------|-------------|
-| `RemoteMapUDPclient.java` | ⭐ Modificado — Lógica del cliente UDP (método `get`) |
-| `RemoteMapUDPservidor.java` | ⭐ Modificado — Lógica del servidor UDP |
-| `UDPclientMain.java` | Clase principal del cliente (no modificada) |
-| `UDPservidorMain.java` | Clase principal del servidor (no modificada) |
-| `Key.java` | Clase para gestionar claves (no modificada) |
-
----
-
-## ⚙️ Cómo funciona
-
-### Servidor (`RemoteMapUDPservidor.java`)
-1. Crea un `DatagramSocket` en el puerto configurado
-2. Espera en bucle infinito datagramas de clientes
-3. Extrae la clave recibida, busca el valor en su mapa local
-4. Responde al cliente con el valor encontrado
-
-### Cliente (`RemoteMapUDPclient.java`)
-1. Crea un `DatagramSocket` sin puerto fijo (lo asigna el sistema)
-2. Envía un datagrama con la clave al servidor correspondiente
-3. Espera y recibe el datagrama de respuesta con el valor
-4. Cierra el socket y devuelve el valor
+| File | Description |
+|------|-------------|
+| `RemoteMapUDPclient.java` | ⭐ Modified — UDP client logic (`get` method) |
+| `RemoteMapUDPservidor.java` | ⭐ Modified — UDP server logic |
+| `UDPclientMain.java` | Client main class (not modified) |
+| `UDPservidorMain.java` | Server main class (not modified) |
+| `Key.java` | Key management class (not modified) |
 
 ---
 
-## ▶️ Ejecución
+## ⚙️ How It Works
 
-### 1. Iniciar Servidor 1
-```
-Clase: UDPservidorMain
-Argumento: 5836
-```
+### Server (`RemoteMapUDPservidor.java`)
+1. Creates a `DatagramSocket` on the configured port
+2. Waits in an infinite loop for client datagrams
+3. Extracts the received key and looks up the value in its local map
+4. Responds to the client with the found value
 
-### 2. Iniciar Servidor 2
-```
-Clase: UDPservidorMain
-Argumento: 5838
-```
-
-### 3. Iniciar Cliente
-```
-Clase: UDPclientMain
-Sin argumentos
-```
-
-> ⚠️ Los servidores deben estar en ejecución **antes** de lanzar el cliente.
+### Client (`RemoteMapUDPclient.java`)
+1. Creates a `DatagramSocket` without a fixed port (assigned by the OS)
+2. Sends a datagram with the key to the corresponding server
+3. Waits and receives the response datagram with the value
+4. Closes the socket and returns the value
 
 ---
 
-## 🛠️ Tecnologías
+## ▶️ How to Run
+
+### 1. Start Server 1
+```
+Class: UDPservidorMain
+Argument: 5836
+```
+
+### 2. Start Server 2
+```
+Class: UDPservidorMain
+Argument: 5838
+```
+
+### 3. Start Client
+```
+Class: UDPclientMain
+No arguments needed
+```
+
+> ⚠️ Both servers must be running **before** launching the client.
+
+---
+
+## 🛠️ Technologies
 
 - Java SE
 - `java.net.DatagramSocket`
