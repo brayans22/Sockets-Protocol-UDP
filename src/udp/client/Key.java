@@ -3,7 +3,7 @@ package udp.client;
 import java.io.Serializable;
 
 /**
- * @author Joan-Manuel Marques
+ * @author Joan-Manuel Marques y Brayan Saiago
  *
  */
 public class Key implements Serializable {

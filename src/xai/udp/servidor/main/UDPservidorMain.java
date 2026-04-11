@@ -30,7 +30,7 @@ import lsim.library.api.LSimLogger;
 import udp.servidor.RemoteMapUDPservidor;
 
 /**
- * @author Joan-Manuel Marques
+ * @author Joan-Manuel Marques y Brayan Saiago
  *
  */
 

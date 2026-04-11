@@ -32,7 +32,7 @@ import udp.client.Key;
 import udp.client.RemoteMapUDPclient;
 
 /**
- * @author Joan-Manuel Marques
+ * @author Joan-Manuel Marques y Brayan Saiago
  *
  */
 

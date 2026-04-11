@@ -21,7 +21,6 @@
 
 package udp.servidor;
 
-import java.nio.ByteBuffer;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -57,11 +56,12 @@ public class RemoteMapUDPservidor {
 				90000 // 90 seconds
 				); 
 
-		/* Implement UDP server's side */	
+		/* Implement UDP server's side */
+		// Initialize socket with null value
+        DatagramSocket socket = null;
 	    try {
-	        // Create the socket with the server port
-	        DatagramSocket socket = new DatagramSocket(server_port);
-
+	    	// Create the socket with the server port
+	        socket = new DatagramSocket(server_port);
 	        // I let the server active as a infinite bucle waiting 
 	        while (true) {
 	        	// Receive the request with the password and define a 1024mb as a max weight
@@ -94,6 +94,11 @@ public class RemoteMapUDPservidor {
 	        LSimLogger.log(Level.ERROR, "SocketException: " + e.getMessage());
 	    } catch (IOException e) {
 	        LSimLogger.log(Level.ERROR, "IOException: " + e.getMessage());
+	    } finally {
+	        // 6. Cerrar el socket para liberar recursos
+	        if (socket != null && !socket.isClosed()) {
+	            socket.close();
+	        }
 	    }
 	}
 }
